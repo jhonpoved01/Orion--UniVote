@@ -1,0 +1,20 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# Maven
+target/
+
+# Configuración local y credenciales
+application.properties
+application-local.properties
+config/application-local.properties
+.env
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Registros
+*.log
