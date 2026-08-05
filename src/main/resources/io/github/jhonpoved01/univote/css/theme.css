@@ -274,3 +274,317 @@
     -fx-background-color: #1e293b;
     -fx-text-fill: #64748b;
 }
+
+.login-root {
+    -fx-background-color: radial-gradient(center 18% 18%, radius 85%, #14213d, #080d19);
+}
+
+.login-surface {
+    -fx-background-color: #0f172a;
+    -fx-background-radius: 22;
+    -fx-border-color: #26344c;
+    -fx-border-radius: 22;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.45), 34, 0.18, 0, 14);
+}
+
+.login-institutional-panel {
+    -fx-background-color: linear-gradient(to bottom right, rgba(30, 64, 175, 0.5), rgba(8, 145, 178, 0.14));
+    -fx-background-radius: 21 0 0 21;
+    -fx-border-color: transparent #26344c transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+.login-form-panel {
+    -fx-background-color: #111827;
+    -fx-background-radius: 0 21 21 0;
+}
+
+.login-brand-mark {
+    -fx-alignment: center;
+    -fx-min-width: 50;
+    -fx-min-height: 50;
+    -fx-background-color: linear-gradient(to bottom right, #2563eb, #06b6d4);
+    -fx-background-radius: 14;
+    -fx-text-fill: white;
+    -fx-font-size: 23px;
+    -fx-font-weight: 800;
+}
+
+.login-brand-name {
+    -fx-text-fill: #f8fafc;
+    -fx-font-size: 21px;
+    -fx-font-weight: 800;
+    -fx-letter-spacing: 1.2px;
+}
+
+.login-hero-title {
+    -fx-text-fill: #f8fafc;
+    -fx-font-size: 34px;
+    -fx-font-weight: 800;
+    -fx-line-spacing: 3px;
+}
+
+.login-hero-description {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 15px;
+    -fx-line-spacing: 4px;
+}
+
+.login-trust-card {
+    -fx-background-color: rgba(8, 15, 31, 0.46);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(103, 232, 249, 0.16);
+    -fx-border-radius: 12;
+    -fx-padding: 16;
+}
+
+.login-trust-text,
+.login-footnote,
+.login-access-note {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 12px;
+}
+
+.login-form-title {
+    -fx-text-fill: #f8fafc;
+    -fx-font-size: 29px;
+    -fx-font-weight: 800;
+}
+
+.login-form-subtitle {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 14px;
+}
+
+.field-label {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+.login-field {
+    -fx-min-height: 46;
+    -fx-background-color: #0b1220;
+    -fx-background-radius: 9;
+    -fx-border-color: #334155;
+    -fx-border-radius: 9;
+    -fx-border-width: 1;
+    -fx-text-fill: #f8fafc;
+    -fx-prompt-text-fill: #64748b;
+    -fx-font-size: 14px;
+    -fx-padding: 10 13;
+}
+
+.login-field:hover {
+    -fx-border-color: #475569;
+}
+
+.login-field:focused {
+    -fx-background-color: #0d1627;
+    -fx-border-color: #38bdf8;
+    -fx-effect: dropshadow(gaussian, rgba(56, 189, 248, 0.16), 10, 0.2, 0, 0);
+}
+
+.login-button {
+    -fx-min-height: 46;
+    -fx-font-size: 14px;
+}
+
+.login-error {
+    -fx-background-color: rgba(127, 29, 29, 0.3);
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(248, 113, 113, 0.42);
+    -fx-border-radius: 8;
+    -fx-padding: 10 12;
+    -fx-text-fill: #fecaca;
+    -fx-font-size: 12px;
+}
+
+.login-progress {
+    -fx-progress-color: #e0f2fe;
+}
+
+.logout-button {
+    -fx-padding: 9 13;
+}
+
+.electoral-content,
+.receipt-root {
+    -fx-background-color: #0b1120;
+}
+
+.electoral-panel,
+.receipt-card {
+    -fx-background-color: #111827;
+    -fx-background-radius: 16;
+    -fx-border-color: #26344c;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-padding: 22;
+}
+
+.electoral-list {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.electoral-list .list-cell {
+    -fx-background-color: #0d1525;
+    -fx-background-radius: 11;
+    -fx-border-color: #26344c;
+    -fx-border-radius: 11;
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 13px;
+    -fx-line-spacing: 3px;
+    -fx-padding: 16;
+    -fx-background-insets: 4 2;
+    -fx-border-insets: 4 2;
+    -fx-cursor: hand;
+}
+
+.electoral-list .list-cell:hover {
+    -fx-background-color: #142038;
+    -fx-border-color: #3b4b66;
+}
+
+.electoral-list .list-cell:selected {
+    -fx-background-color: linear-gradient(to right, rgba(37, 99, 235, 0.48), rgba(8, 145, 178, 0.24));
+    -fx-border-color: #38bdf8;
+    -fx-text-fill: #f8fafc;
+}
+
+.electoral-list .list-cell:empty {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.empty-state,
+.electoral-error {
+    -fx-background-radius: 9;
+    -fx-padding: 12 14;
+    -fx-font-size: 13px;
+}
+
+.empty-state {
+    -fx-background-color: #172033;
+    -fx-text-fill: #94a3b8;
+}
+
+.electoral-error {
+    -fx-background-color: rgba(127, 29, 29, 0.32);
+    -fx-border-color: rgba(248, 113, 113, 0.42);
+    -fx-border-radius: 9;
+    -fx-text-fill: #fecaca;
+}
+
+.confirm-vote-button {
+    -fx-min-height: 46;
+}
+
+.electoral-progress {
+    -fx-progress-color: #22d3ee;
+    -fx-background-color: rgba(8, 15, 31, 0.86);
+    -fx-background-radius: 16;
+    -fx-padding: 18;
+}
+
+.loading-label {
+    -fx-text-fill: #cbd5e1;
+}
+
+.electoral-dialog {
+    -fx-background-color: #111827;
+}
+
+.electoral-dialog .label {
+    -fx-text-fill: #e2e8f0;
+}
+
+.receipt-card {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 30, 0.16, 0, 12);
+}
+
+.receipt-success-icon {
+    -fx-alignment: center;
+    -fx-min-width: 72;
+    -fx-min-height: 72;
+    -fx-background-color: rgba(13, 148, 136, 0.22);
+    -fx-background-radius: 36;
+    -fx-text-fill: #5eead4;
+    -fx-font-size: 34px;
+    -fx-font-weight: 800;
+}
+
+.receipt-title {
+    -fx-text-fill: #f8fafc;
+    -fx-font-size: 26px;
+    -fx-font-weight: 800;
+}
+
+.receipt-description {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 14px;
+}
+
+.verification-code-card {
+    -fx-background-color: #0b1220;
+    -fx-background-radius: 12;
+    -fx-border-color: #334155;
+    -fx-border-radius: 12;
+    -fx-padding: 18;
+}
+
+.verification-code {
+    -fx-text-fill: #7dd3fc;
+    -fx-font-family: "JetBrains Mono", "Noto Sans Mono", monospace;
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+    -fx-line-spacing: 4px;
+}
+
+.receipt-action {
+    -fx-min-width: 210;
+}
+
+.verification-content {
+    -fx-background-color: radial-gradient(center 50% 30%, radius 75%, #14213d, #0b1120);
+}
+
+.verification-card {
+    -fx-background-color: #111827;
+    -fx-background-radius: 16;
+    -fx-border-color: #26344c;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.36), 28, 0.14, 0, 10);
+}
+
+.verification-field {
+    -fx-font-family: "JetBrains Mono", "Noto Sans Mono", monospace;
+}
+
+.verification-message,
+.verification-success {
+    -fx-background-radius: 9;
+    -fx-border-radius: 9;
+    -fx-padding: 12 14;
+    -fx-font-size: 13px;
+}
+
+.verification-message {
+    -fx-background-color: rgba(127, 29, 29, 0.32);
+    -fx-border-color: rgba(248, 113, 113, 0.42);
+    -fx-text-fill: #fecaca;
+}
+
+.verification-success {
+    -fx-background-color: rgba(13, 148, 136, 0.2);
+    -fx-border-color: rgba(45, 212, 191, 0.38);
+    -fx-text-fill: #99f6e4;
+}
+
+.results-list .list-cell {
+    -fx-font-size: 14px;
+    -fx-padding: 18;
+}

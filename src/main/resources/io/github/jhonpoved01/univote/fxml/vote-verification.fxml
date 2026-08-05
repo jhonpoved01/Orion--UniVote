@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="io.github.jhonpoved01.univote.controller.VoteVerificationController"
+            stylesheets="@../css/theme.css" styleClass="app-shell">
+    <top><HBox alignment="CENTER_LEFT" spacing="16" styleClass="topbar">
+        <padding><Insets top="18" right="32" bottom="18" left="32"/></padding>
+        <VBox spacing="2"><Label text="Verificar comprobante" styleClass="topbar-title"/>
+            <Label text="Confirma que tu código corresponde a un voto registrado"
+                   styleClass="topbar-subtitle"/></VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="backButton" text="Volver al dashboard" onAction="#handleBack"
+                styleClass="secondary-button"/>
+    </HBox></top>
+    <center><StackPane styleClass="verification-content">
+        <VBox maxWidth="720" spacing="20" styleClass="verification-card">
+            <Label text="Código de verificación" styleClass="page-title"/>
+            <Label text="Pega el código completo de 64 caracteres entregado al emitir tu voto. La verificación no revela la candidatura seleccionada."
+                   wrapText="true" styleClass="page-description"/>
+            <TextField fx:id="codeField" promptText="Código hexadecimal de verificación"
+                       onAction="#handleVerify" styleClass="login-field, verification-field"/>
+            <HBox alignment="CENTER_LEFT" spacing="14">
+                <Button fx:id="verifyButton" text="Verificar" onAction="#handleVerify"
+                        defaultButton="true" styleClass="primary-button"/>
+                <ProgressIndicator fx:id="progressIndicator" visible="false" managed="false"
+                                   prefWidth="28" prefHeight="28" styleClass="login-progress"/>
+            </HBox>
+            <Label fx:id="messageLabel" text="" visible="false" managed="false"
+                   wrapText="true" styleClass="verification-message"/>
+            <padding><Insets top="38" right="42" bottom="38" left="42"/></padding>
+        </VBox>
+        <padding><Insets top="44" right="50" bottom="44" left="50"/></padding>
+    </StackPane></center>
+</BorderPane>
