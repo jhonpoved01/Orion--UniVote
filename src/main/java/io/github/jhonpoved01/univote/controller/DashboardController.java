@@ -6,6 +6,7 @@ import io.github.jhonpoved01.univote.security.UserSession;
 import java.util.Objects;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 
 public final class DashboardController {
 
@@ -20,6 +21,10 @@ public final class DashboardController {
     private Label welcomeLabel;
     @FXML
     private Label avatarLabel;
+    @FXML
+    private Button voteButton;
+    @FXML
+    private Button exploreElectionsButton;
 
     public DashboardController(UserSession session, SceneNavigator navigator) {
         this.session = Objects.requireNonNull(session, "session no puede ser null");
@@ -34,6 +39,16 @@ public final class DashboardController {
         profileRoleLabel.setText(user.roleName());
         welcomeLabel.setText("Bienvenido, " + user.firstNames().strip());
         avatarLabel.setText(initials(user));
+        boolean canVote = session.hasPermission("EMITIR_VOTO");
+        voteButton.setVisible(canVote);
+        voteButton.setManaged(canVote);
+        exploreElectionsButton.setVisible(canVote);
+        exploreElectionsButton.setManaged(canVote);
+    }
+
+    @FXML
+    private void handleElections() {
+        navigator.showElections(session);
     }
 
     @FXML

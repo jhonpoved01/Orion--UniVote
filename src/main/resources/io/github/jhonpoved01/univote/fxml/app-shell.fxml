@@ -37,7 +37,8 @@
             </Label>
 
             <Button maxWidth="Infinity" text="  Resumen" styleClass="nav-button, nav-button-active"/>
-            <Button maxWidth="Infinity" text="  Elecciones" styleClass="nav-button"/>
+            <Button fx:id="voteButton" maxWidth="Infinity" text="  Elecciones"
+                    onAction="#handleElections" styleClass="nav-button"/>
             <Button maxWidth="Infinity" text="  Candidaturas" styleClass="nav-button"/>
             <Button maxWidth="Infinity" text="  Resultados" styleClass="nav-button"/>
             <Button maxWidth="Infinity" text="  Notificaciones" styleClass="nav-button"/>
@@ -87,7 +88,8 @@
                            styleClass="page-description"/>
                 </VBox>
                 <Region HBox.hgrow="ALWAYS"/>
-                <Button text="Explorar elecciones" styleClass="primary-button"/>
+                <Button fx:id="exploreElectionsButton" text="Explorar elecciones" onAction="#handleElections"
+                        visible="false" managed="false" styleClass="primary-button"/>
             </HBox>
 
             <GridPane hgap="18.0" vgap="18.0">

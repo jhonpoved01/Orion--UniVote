@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx/25"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="io.github.jhonpoved01.univote.controller.VoteReceiptController"
+           stylesheets="@../css/theme.css" styleClass="receipt-root">
+    <VBox alignment="CENTER" maxWidth="720" spacing="22" styleClass="receipt-card">
+        <Label text="✓" styleClass="receipt-success-icon"/>
+        <VBox alignment="CENTER" spacing="8">
+            <Label text="Tu voto fue registrado correctamente" styleClass="receipt-title"/>
+            <Label text="Conserva este código para verificar posteriormente el registro de tu voto."
+                   maxWidth="560" wrapText="true" textAlignment="CENTER"
+                   styleClass="receipt-description"/>
+        </VBox>
+        <VBox maxWidth="610" spacing="9" styleClass="verification-code-card">
+            <Label text="CÓDIGO DE VERIFICACIÓN" styleClass="card-eyebrow"/>
+            <Label fx:id="verificationCodeLabel" text="" wrapText="true"
+                   styleClass="verification-code"/>
+        </VBox>
+        <Button text="Copiar código" onAction="#handleCopyCode"
+                styleClass="outline-button, receipt-action"/>
+        <Label fx:id="copyStatusLabel" text="" styleClass="status-positive"/>
+        <Region minHeight="4"/>
+        <Button text="Volver al dashboard" onAction="#handleDashboard"
+                styleClass="primary-button, receipt-action"/>
+        <padding><Insets top="48" right="52" bottom="48" left="52"/></padding>
+    </VBox>
+    <padding><Insets top="40" right="50" bottom="40" left="50"/></padding>
+</StackPane>

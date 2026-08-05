@@ -8,24 +8,25 @@ import javafx.stage.Stage;
 
 public final class UniVoteApplication extends Application {
 
-    private ExecutorService authenticationExecutor;
+    private ExecutorService applicationExecutor;
 
     @Override
     public void start(Stage stage) {
         AppConfig config = AppConfig.load();
         ApplicationServices services = ApplicationServices.create();
-        authenticationExecutor = Executors.newSingleThreadExecutor(
-                Thread.ofPlatform().daemon().name("univote-auth-worker").factory());
+        applicationExecutor = Executors.newSingleThreadExecutor(
+                Thread.ofPlatform().daemon().name("univote-application-worker").factory());
         SceneNavigator navigator = new SceneNavigator(
-                stage, config, services.authenticationService(), authenticationExecutor);
+                stage, config, services.authenticationService(), services.votingService(),
+                applicationExecutor);
 
         navigator.showLogin();
     }
 
     @Override
     public void stop() {
-        if (authenticationExecutor != null) {
-            authenticationExecutor.shutdownNow();
+        if (applicationExecutor != null) {
+            applicationExecutor.shutdownNow();
         }
     }
 }
