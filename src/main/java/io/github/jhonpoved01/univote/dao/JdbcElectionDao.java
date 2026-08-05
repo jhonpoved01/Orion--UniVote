@@ -29,6 +29,12 @@ public final class JdbcElectionDao implements ElectionDao {
             FROM elecciones
             WHERE id_eleccion = ?
             """.formatted(COLUMNS);
+    private static final String FIND_FINISHED = """
+            SELECT %s
+            FROM elecciones
+            WHERE estado = 'FINALIZADA' AND CURRENT_TIMESTAMP >= fecha_fin
+            ORDER BY fecha_fin DESC, id_eleccion DESC
+            """.formatted(COLUMNS);
 
     private final DatabaseConnectionFactory connectionFactory;
 
@@ -59,6 +65,19 @@ public final class JdbcElectionDao implements ElectionDao {
             try (ResultSet resultSet = statement.executeQuery()) {
                 return resultSet.next() ? Optional.of(map(resultSet)) : Optional.empty();
             }
+        } catch (SQLException exception) {
+            throw dataAccessFailure(exception);
+        }
+    }
+
+    @Override
+    public List<Election> findFinishedElections() {
+        try (Connection connection = connectionFactory.openConnection();
+                PreparedStatement statement = connection.prepareStatement(FIND_FINISHED);
+                ResultSet resultSet = statement.executeQuery()) {
+            List<Election> elections = new ArrayList<>();
+            while (resultSet.next()) elections.add(map(resultSet));
+            return List.copyOf(elections);
         } catch (SQLException exception) {
             throw dataAccessFailure(exception);
         }

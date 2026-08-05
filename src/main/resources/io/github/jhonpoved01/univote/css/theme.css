@@ -546,3 +546,45 @@
 .receipt-action {
     -fx-min-width: 210;
 }
+
+.verification-content {
+    -fx-background-color: radial-gradient(center 50% 30%, radius 75%, #14213d, #0b1120);
+}
+
+.verification-card {
+    -fx-background-color: #111827;
+    -fx-background-radius: 16;
+    -fx-border-color: #26344c;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.36), 28, 0.14, 0, 10);
+}
+
+.verification-field {
+    -fx-font-family: "JetBrains Mono", "Noto Sans Mono", monospace;
+}
+
+.verification-message,
+.verification-success {
+    -fx-background-radius: 9;
+    -fx-border-radius: 9;
+    -fx-padding: 12 14;
+    -fx-font-size: 13px;
+}
+
+.verification-message {
+    -fx-background-color: rgba(127, 29, 29, 0.32);
+    -fx-border-color: rgba(248, 113, 113, 0.42);
+    -fx-text-fill: #fecaca;
+}
+
+.verification-success {
+    -fx-background-color: rgba(13, 148, 136, 0.2);
+    -fx-border-color: rgba(45, 212, 191, 0.38);
+    -fx-text-fill: #99f6e4;
+}
+
+.results-list .list-cell {
+    -fx-font-size: 14px;
+    -fx-padding: 18;
+}

@@ -25,6 +25,8 @@ public final class DashboardController {
     private Button voteButton;
     @FXML
     private Button exploreElectionsButton;
+    @FXML private Button verificationButton;
+    @FXML private Button resultsButton;
 
     public DashboardController(UserSession session, SceneNavigator navigator) {
         this.session = Objects.requireNonNull(session, "session no puede ser null");
@@ -44,12 +46,21 @@ public final class DashboardController {
         voteButton.setManaged(canVote);
         exploreElectionsButton.setVisible(canVote);
         exploreElectionsButton.setManaged(canVote);
+        verificationButton.setVisible(true);
+        verificationButton.setManaged(true);
+        boolean canViewResults = session.hasPermission("CONSULTAR_RESULTADOS");
+        resultsButton.setVisible(canViewResults);
+        resultsButton.setManaged(canViewResults);
     }
 
     @FXML
     private void handleElections() {
         navigator.showElections(session);
     }
+
+    @FXML private void handleVerification() { navigator.showVoteVerification(session); }
+
+    @FXML private void handleResults() { navigator.showResults(session); }
 
     @FXML
     private void handleLogout() {

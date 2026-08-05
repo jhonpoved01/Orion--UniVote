@@ -40,7 +40,10 @@
             <Button fx:id="voteButton" maxWidth="Infinity" text="  Elecciones"
                     onAction="#handleElections" styleClass="nav-button"/>
             <Button maxWidth="Infinity" text="  Candidaturas" styleClass="nav-button"/>
-            <Button maxWidth="Infinity" text="  Resultados" styleClass="nav-button"/>
+            <Button fx:id="verificationButton" maxWidth="Infinity" text="  Verificar comprobante"
+                    onAction="#handleVerification" styleClass="nav-button"/>
+            <Button fx:id="resultsButton" maxWidth="Infinity" text="  Resultados"
+                    onAction="#handleResults" styleClass="nav-button"/>
             <Button maxWidth="Infinity" text="  Notificaciones" styleClass="nav-button"/>
 
             <Region VBox.vgrow="ALWAYS"/>

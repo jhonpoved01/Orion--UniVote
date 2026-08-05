@@ -18,6 +18,7 @@ public final class UniVoteApplication extends Application {
                 Thread.ofPlatform().daemon().name("univote-application-worker").factory());
         SceneNavigator navigator = new SceneNavigator(
                 stage, config, services.authenticationService(), services.votingService(),
+                services.voteVerificationService(), services.electionResultsService(),
                 applicationExecutor);
 
         navigator.showLogin();

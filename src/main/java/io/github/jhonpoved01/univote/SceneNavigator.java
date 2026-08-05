@@ -5,10 +5,14 @@ import io.github.jhonpoved01.univote.controller.DashboardController;
 import io.github.jhonpoved01.univote.controller.LoginController;
 import io.github.jhonpoved01.univote.controller.ElectionsController;
 import io.github.jhonpoved01.univote.controller.VoteReceiptController;
+import io.github.jhonpoved01.univote.controller.VoteVerificationController;
+import io.github.jhonpoved01.univote.controller.ResultsController;
 import io.github.jhonpoved01.univote.exception.ViewNavigationException;
 import io.github.jhonpoved01.univote.security.UserSession;
 import io.github.jhonpoved01.univote.service.AuthenticationService;
 import io.github.jhonpoved01.univote.service.VotingService;
+import io.github.jhonpoved01.univote.service.VoteVerificationService;
+import io.github.jhonpoved01.univote.service.ElectionResultsService;
 import io.github.jhonpoved01.univote.model.VoteReceipt;
 import java.io.IOException;
 import java.net.URL;
@@ -29,11 +33,17 @@ public final class SceneNavigator {
             "/io/github/jhonpoved01/univote/fxml/elections.fxml";
     private static final String RECEIPT_RESOURCE =
             "/io/github/jhonpoved01/univote/fxml/vote-receipt.fxml";
+    private static final String VERIFICATION_RESOURCE =
+            "/io/github/jhonpoved01/univote/fxml/vote-verification.fxml";
+    private static final String RESULTS_RESOURCE =
+            "/io/github/jhonpoved01/univote/fxml/results.fxml";
 
     private final Stage stage;
     private final AppConfig appConfig;
     private final AuthenticationService authenticationService;
     private final VotingService votingService;
+    private final VoteVerificationService verificationService;
+    private final ElectionResultsService resultsService;
     private final Executor applicationExecutor;
     private Scene scene;
 
@@ -42,12 +52,16 @@ public final class SceneNavigator {
             AppConfig appConfig,
             AuthenticationService authenticationService,
             VotingService votingService,
+            VoteVerificationService verificationService,
+            ElectionResultsService resultsService,
             Executor applicationExecutor) {
         this.stage = Objects.requireNonNull(stage, "stage no puede ser null");
         this.appConfig = Objects.requireNonNull(appConfig, "appConfig no puede ser null");
         this.authenticationService = Objects.requireNonNull(
                 authenticationService, "authenticationService no puede ser null");
         this.votingService = Objects.requireNonNull(votingService, "votingService no puede ser null");
+        this.verificationService = Objects.requireNonNull(verificationService);
+        this.resultsService = Objects.requireNonNull(resultsService);
         this.applicationExecutor = Objects.requireNonNull(
                 applicationExecutor, "applicationExecutor no puede ser null");
     }
@@ -90,6 +104,29 @@ public final class SceneNavigator {
         Parent root = loadView(RECEIPT_RESOURCE, type -> {
             if (type == VoteReceiptController.class) {
                 return new VoteReceiptController(session, receipt, this);
+            }
+            throw unsupportedController(type);
+        });
+        show(root);
+    }
+
+    public void showVoteVerification(UserSession session) {
+        Objects.requireNonNull(session);
+        Parent root = loadView(VERIFICATION_RESOURCE, type -> {
+            if (type == VoteVerificationController.class) {
+                return new VoteVerificationController(
+                        session, verificationService, applicationExecutor, this);
+            }
+            throw unsupportedController(type);
+        });
+        show(root);
+    }
+
+    public void showResults(UserSession session) {
+        Objects.requireNonNull(session);
+        Parent root = loadView(RESULTS_RESOURCE, type -> {
+            if (type == ResultsController.class) {
+                return new ResultsController(session, resultsService, applicationExecutor, this);
             }
             throw unsupportedController(type);
         });

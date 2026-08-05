@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="io.github.jhonpoved01.univote.controller.ResultsController"
+            stylesheets="@../css/theme.css" styleClass="app-shell">
+    <top><HBox alignment="CENTER_LEFT" spacing="16" styleClass="topbar">
+        <padding><Insets top="18" right="32" bottom="18" left="32"/></padding>
+        <VBox spacing="2"><Label text="Resultados electorales" styleClass="topbar-title"/>
+            <Label text="Resultados oficiales de procesos finalizados" styleClass="topbar-subtitle"/></VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="backButton" text="Volver al dashboard" onAction="#handleBack"
+                styleClass="secondary-button"/>
+    </HBox></top>
+    <center><StackPane styleClass="electoral-content">
+        <HBox maxWidth="1180" spacing="22">
+            <VBox prefWidth="360" spacing="14" styleClass="electoral-panel">
+                <Label text="Elecciones publicadas" styleClass="section-title"/>
+                <Label text="Solo procesos finalizados después de su fecha de cierre."
+                       wrapText="true" styleClass="section-subtitle"/>
+                <ListView fx:id="electionList" VBox.vgrow="ALWAYS" styleClass="electoral-list"/>
+            </VBox>
+            <VBox spacing="14" HBox.hgrow="ALWAYS" styleClass="electoral-panel">
+                <Label fx:id="selectedElectionLabel" text="Selecciona una elección"
+                       styleClass="section-title"/>
+                <Label text="Orden: votos descendente y número de lista ascendente."
+                       styleClass="section-subtitle"/>
+                <ListView fx:id="resultList" VBox.vgrow="ALWAYS"
+                          styleClass="electoral-list, results-list"/>
+                <Label fx:id="emptyLabel" text="" visible="false" managed="false"
+                       wrapText="true" styleClass="empty-state"/>
+                <Label fx:id="errorLabel" text="" visible="false" managed="false"
+                       wrapText="true" styleClass="electoral-error"/>
+            </VBox>
+        </HBox>
+        <ProgressIndicator fx:id="progressIndicator" visible="false" managed="false"
+                           prefWidth="52" prefHeight="52" styleClass="electoral-progress"/>
+        <padding><Insets top="30" right="32" bottom="32" left="32"/></padding>
+    </StackPane></center>
+</BorderPane>

@@ -145,6 +145,7 @@ class VotingServiceTest {
             byId = Optional.of(election);
         }
         public List<Election> findAvailableElections() { return available; }
+        public List<Election> findFinishedElections() { return List.of(); }
         public Optional<Election> findById(int id) { return byId; }
     }
 

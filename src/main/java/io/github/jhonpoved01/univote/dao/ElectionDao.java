@@ -6,5 +6,6 @@ import java.util.Optional;
 
 public interface ElectionDao {
     List<Election> findAvailableElections();
+    List<Election> findFinishedElections();
     Optional<Election> findById(int electionId);
 }
