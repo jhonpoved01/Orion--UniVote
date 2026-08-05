@@ -7,10 +7,13 @@ out/
 target/
 
 # Configuración local y credenciales
-application.properties
-application-local.properties
+/application.properties
+/application-local.properties
 config/application-local.properties
 .env
+
+# Archivos temporales de Maven Wrapper
+.mvn/wrapper/maven-wrapper.jar
 
 # Sistema operativo
 .DS_Store
