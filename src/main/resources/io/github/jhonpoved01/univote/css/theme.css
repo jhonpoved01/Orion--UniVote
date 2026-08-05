@@ -274,3 +274,137 @@
     -fx-background-color: #1e293b;
     -fx-text-fill: #64748b;
 }
+
+.login-root {
+    -fx-background-color: radial-gradient(center 18% 18%, radius 85%, #14213d, #080d19);
+}
+
+.login-surface {
+    -fx-background-color: #0f172a;
+    -fx-background-radius: 22;
+    -fx-border-color: #26344c;
+    -fx-border-radius: 22;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.45), 34, 0.18, 0, 14);
+}
+
+.login-institutional-panel {
+    -fx-background-color: linear-gradient(to bottom right, rgba(30, 64, 175, 0.5), rgba(8, 145, 178, 0.14));
+    -fx-background-radius: 21 0 0 21;
+    -fx-border-color: transparent #26344c transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+.login-form-panel {
+    -fx-background-color: #111827;
+    -fx-background-radius: 0 21 21 0;
+}
+
+.login-brand-mark {
+    -fx-alignment: center;
+    -fx-min-width: 50;
+    -fx-min-height: 50;
+    -fx-background-color: linear-gradient(to bottom right, #2563eb, #06b6d4);
+    -fx-background-radius: 14;
+    -fx-text-fill: white;
+    -fx-font-size: 23px;
+    -fx-font-weight: 800;
+}
+
+.login-brand-name {
+    -fx-text-fill: #f8fafc;
+    -fx-font-size: 21px;
+    -fx-font-weight: 800;
+    -fx-letter-spacing: 1.2px;
+}
+
+.login-hero-title {
+    -fx-text-fill: #f8fafc;
+    -fx-font-size: 34px;
+    -fx-font-weight: 800;
+    -fx-line-spacing: 3px;
+}
+
+.login-hero-description {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 15px;
+    -fx-line-spacing: 4px;
+}
+
+.login-trust-card {
+    -fx-background-color: rgba(8, 15, 31, 0.46);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(103, 232, 249, 0.16);
+    -fx-border-radius: 12;
+    -fx-padding: 16;
+}
+
+.login-trust-text,
+.login-footnote,
+.login-access-note {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 12px;
+}
+
+.login-form-title {
+    -fx-text-fill: #f8fafc;
+    -fx-font-size: 29px;
+    -fx-font-weight: 800;
+}
+
+.login-form-subtitle {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 14px;
+}
+
+.field-label {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+.login-field {
+    -fx-min-height: 46;
+    -fx-background-color: #0b1220;
+    -fx-background-radius: 9;
+    -fx-border-color: #334155;
+    -fx-border-radius: 9;
+    -fx-border-width: 1;
+    -fx-text-fill: #f8fafc;
+    -fx-prompt-text-fill: #64748b;
+    -fx-font-size: 14px;
+    -fx-padding: 10 13;
+}
+
+.login-field:hover {
+    -fx-border-color: #475569;
+}
+
+.login-field:focused {
+    -fx-background-color: #0d1627;
+    -fx-border-color: #38bdf8;
+    -fx-effect: dropshadow(gaussian, rgba(56, 189, 248, 0.16), 10, 0.2, 0, 0);
+}
+
+.login-button {
+    -fx-min-height: 46;
+    -fx-font-size: 14px;
+}
+
+.login-error {
+    -fx-background-color: rgba(127, 29, 29, 0.3);
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(248, 113, 113, 0.42);
+    -fx-border-radius: 8;
+    -fx-padding: 10 12;
+    -fx-text-fill: #fecaca;
+    -fx-font-size: 12px;
+}
+
+.login-progress {
+    -fx-progress-color: #e0f2fe;
+}
+
+.logout-button {
+    -fx-padding: 9 13;
+}
