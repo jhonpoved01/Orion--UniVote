@@ -37,14 +37,12 @@
             </Label>
 
             <Button maxWidth="Infinity" text="  Resumen" styleClass="nav-button, nav-button-active"/>
-            <Button fx:id="voteButton" maxWidth="Infinity" text="  Elecciones"
+            <Button fx:id="voteButton" maxWidth="Infinity" text="  Elecciones y candidaturas"
                     onAction="#handleElections" styleClass="nav-button"/>
-            <Button maxWidth="Infinity" text="  Candidaturas" styleClass="nav-button"/>
             <Button fx:id="verificationButton" maxWidth="Infinity" text="  Verificar comprobante"
                     onAction="#handleVerification" styleClass="nav-button"/>
             <Button fx:id="resultsButton" maxWidth="Infinity" text="  Resultados"
                     onAction="#handleResults" styleClass="nav-button"/>
-            <Button maxWidth="Infinity" text="  Notificaciones" styleClass="nav-button"/>
 
             <Region VBox.vgrow="ALWAYS"/>
 
@@ -143,7 +141,9 @@
                     <HBox alignment="CENTER_LEFT">
                         <Label text="Información demostrativa" styleClass="muted-label"/>
                         <Region HBox.hgrow="ALWAYS"/>
-                        <Button text="Ver detalle" styleClass="outline-button"/>
+                        <Button fx:id="processDetailsButton" text="Ver detalle"
+                                onAction="#handleElections" visible="false" managed="false"
+                                styleClass="outline-button"/>
                     </HBox>
                 </VBox>
 

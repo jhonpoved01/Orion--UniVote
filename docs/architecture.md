@@ -1,35 +1,50 @@
 # Arquitectura de UniVote
 
-UniVote inicia como una aplicación Maven de un solo módulo sobre Java 25 y JavaFX 25.0.2. La interfaz se declara con FXML y su presentación se concentra en hojas CSS externas.
+UniVote es una aplicación Maven de un módulo sobre Java 25 y JavaFX 25.0.2. Usa MVC con capas Service y DAO, FXML/CSS para presentación y JDBC directo para MySQL.
 
-## Flujo previsto
+## Capas reales
 
 ```text
-View → Controller → Service → DAO → JDBC → MySQL
+JavaFX/FXML → Controller → Service → DAO → DatabaseConnectionFactory → MySQL
 ```
 
-El bootstrap contiene la aplicación, configuración visual no sensible y una vista estática. La fase 2A añade configuración JDBC externa, una fábrica de conexiones por operación y un health check aislado. No contiene controladores funcionales, servicios, DAO ni modelos de base de datos.
+- **View:** seis vistas FXML y una hoja de tema compartida.
+- **Controller:** eventos, estado visual, creación de `Task` y navegación; no contiene SQL.
+- **Service:** autenticación, permisos, disponibilidad electoral, validación de candidatura y publicación de resultados.
+- **DAO:** consultas parametrizadas, mapeo y `CallableStatement`.
+- **Model/Security:** records inmutables para usuario, sesión, elecciones, candidaturas y comprobantes.
+- **Config/Database:** carga externa, fábrica de conexiones por operación y health check.
 
-## Infraestructura JDBC
+## Composición y navegación
 
-`DatabaseConfigLoader` compone la configuración cuando una operación la solicita. La selección del archivo externo sigue este orden: propiedad JVM `univote.config.path`, variable `UNIVOTE_CONFIG_PATH` y, finalmente, `config/application-local.properties`.
+`UniVoteApplication` carga `AppConfig`, crea `ApplicationServices`, un único executor daemon y `SceneNavigator`. `ApplicationServices` construye una fábrica JDBC compartida y servicios explícitos; construirlos no abre conexiones. `SceneNavigator` reutiliza el `Stage` y la `Scene`, carga recursos por classpath e inyecta controladores mediante `controllerFactory`. No existe Service Locator, Singleton ni estado global.
 
-Los valores de conexión aplican esta prioridad:
+## Flujos
 
-1. Variables de entorno `UNIVOTE_DB_*`.
-2. Propiedades del archivo externo UTF-8.
-3. Valores seguros no secretos definidos por la aplicación.
+### Autenticación
 
-`DatabaseConnectionFactory` recibe una configuración inmutable y crea una conexión nueva mediante `DriverManager` por cada llamada. No conserva conexiones ni se ejecuta desde `UniVoteApplication`. `DatabaseHealthCheck` abre y cierra todos los recursos para ejecutar exclusivamente `SELECT 1`.
+El login crea un `Task`; `AuthenticationService` normaliza el identificador, consulta usuario/rol/permisos en una operación, verifica BCrypt y devuelve `UserSession`. Los fallos de credenciales comparten un mensaje genérico y el arreglo de contraseña se limpia en `finally`.
 
-## Responsabilidades futuras
+### Flujo electoral
 
-- **View:** presentación FXML, componentes y validación visual.
-- **Controller:** eventos de interfaz y coordinación con servicios.
-- **Service:** reglas de negocio, validación y autorización.
-- **DAO:** persistencia JDBC parametrizada y procedimientos almacenados.
-- **Config:** carga y validación de configuración.
-- **Security:** autenticación, sesión y permisos.
-- **Database:** creación acotada de conexiones y comprobación de disponibilidad.
+`VotingService` exige `EMITIR_VOTO`, revalida elección activa y candidatura, y llama una sola vez a `JdbcVoteDao`. El DAO usa exclusivamente `sp_registrar_voto`; el comprobante resultante no contiene usuario ni candidatura.
 
-Las dependencias se construirán explícitamente sin framework de inyección. La aplicación permanecerá inicialmente sin `module-info.java` para mantener sencillo el uso de FXML.
+### Verificación
+
+Una sesión autenticada puede comprobar un código hexadecimal de 64 caracteres. `JdbcVoteVerificationDao` usa exclusivamente `sp_verificar_voto`; el modelo expone únicamente que el registro existe y su fecha.
+
+### Resultados
+
+`ElectionResultsService` exige `CONSULTAR_RESULTADOS`, consulta primero la elección y solo llama a `sp_consultar_resultados` cuando el estado es `FINALIZADA` y `fecha_fin` ya pasó. Los porcentajes se mantienen como `BigDecimal`.
+
+## Concurrencia
+
+Existe un solo `ExecutorService` de un hilo daemon. Login, lecturas y procedimientos JDBC se ejecutan en `Task`; sus handlers actualizan JavaFX en el hilo de UI. El executor se cierra en `Application.stop()`. No hay esperas activas, reintentos automáticos ni un executor por controlador.
+
+## Persistencia y privacidad
+
+Cada DAO abre y cierra una conexión con try-with-resources. `votos` conserva candidatura y comprobante; `control_votacion` conserva usuario y elección. Java no consulta directamente esas tablas: registrar, verificar y consultar resultados pasa por procedimientos almacenados.
+
+## Límites del MVP
+
+No incluye administración, recuperación de contraseña, persistencia de sesiones, notificaciones completas, auditoría avanzada, exportación, migraciones ni despliegue. Es un MVP académico/demostrativo, no una plataforma certificada para elecciones de alta criticidad.

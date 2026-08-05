@@ -25,6 +25,8 @@ public final class DashboardController {
     private Button voteButton;
     @FXML
     private Button exploreElectionsButton;
+    @FXML
+    private Button processDetailsButton;
     @FXML private Button verificationButton;
     @FXML private Button resultsButton;
 
@@ -46,6 +48,8 @@ public final class DashboardController {
         voteButton.setManaged(canVote);
         exploreElectionsButton.setVisible(canVote);
         exploreElectionsButton.setManaged(canVote);
+        processDetailsButton.setVisible(canVote);
+        processDetailsButton.setManaged(canVote);
         verificationButton.setVisible(true);
         verificationButton.setManaged(true);
         boolean canViewResults = session.hasPermission("CONSULTAR_RESULTADOS");
